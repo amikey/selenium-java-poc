@@ -10,12 +10,12 @@ import org.openqa.selenium.phantomjs.PhantomJSDriver;
 public class GoogleClickTest {
 
 	WebDriver driver;
-	boolean headless = true;
+	boolean phantomJS = true;
 
 	@Before
 	public void setup() {
 		
-		if(headless){
+		if(phantomJS){
 			System.setProperty("webdriver.phantomjs.driver", "phantomjs");
 			driver = new PhantomJSDriver();
 		}else{

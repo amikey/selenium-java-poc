@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.phantomjs.PhantomJSDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
 
 public class GoogleClickTest {
 
@@ -16,9 +17,14 @@ public class GoogleClickTest {
 	public void setup() {
 		
 		if(phantomJS){
-			String phantombinary = System.getProperty("phantomjs.binary");
-			System.setProperty("webdriver.phantomjs.driver", phantombinary);
-			driver = new PhantomJSDriver();
+			DesiredCapabilities capabilities = DesiredCapabilities.phantomjs();
+			capabilities.setJavascriptEnabled(true); 
+			capabilities.setCapability("phantomjs.binary.path", System.getProperty("phantomjs.binary"));
+
+			//former try to set to system properties
+			System.setProperty("webdriver.phantomjs.driver", System.getProperty("phantomjs.binary"));
+			
+			driver = new PhantomJSDriver(capabilities);
 		}else{
 			System.setProperty("webdriver.chrome.driver", "chromedriver");
 			driver = new ChromeDriver();

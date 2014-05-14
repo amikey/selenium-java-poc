@@ -16,7 +16,8 @@ public class GoogleClickTest {
 	public void setup() {
 		
 		if(phantomJS){
-			System.setProperty("webdriver.phantomjs.driver", "phantomjs");
+			String phantombinary = System.getProperty("phantomjs.binary");
+			System.setProperty("webdriver.phantomjs.driver", phantombinary);
 			driver = new PhantomJSDriver();
 		}else{
 			System.setProperty("webdriver.chrome.driver", "chromedriver");
